@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import Cat1 from './img/고양이1.jfif';
+import Toggle from './Toggle';
+// import Cat1 from './img/고양이1.jfif';
 import Cat2 from './img/고양이2.jfif';
 import Cat3 from './img/고양이3.jpg';
 import Cat4 from './img/고양이4.jpg';
@@ -35,7 +36,7 @@ const slide = () => {
     <>
       <BoxContainer ref={slideRef}>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat1} />
+          <Toggle />
         </SlideBox>
         <SlideBox className="items">
           <img alt="고양이" src={Cat2} />
