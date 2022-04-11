@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Toggle from './Toggle';
 import Modal from './Modal';
-import Cat3 from './img/고양이3.jpg';
+import Tab from './Tab';
 import Cat4 from './img/고양이4.jpg';
 
 const slide = () => {
@@ -41,7 +41,7 @@ const slide = () => {
           <Modal />
         </SlideBox>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat3} />
+          <Tab />
         </SlideBox>
         <SlideBox className="items">
           <img alt="고양이" src={Cat4} />
