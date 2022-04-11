@@ -1,32 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Toggle from './Toggle';
-// import Cat1 from './img/고양이1.jfif';
-import Cat2 from './img/고양이2.jfif';
+import Modal from './Modal';
 import Cat3 from './img/고양이3.jpg';
 import Cat4 from './img/고양이4.jpg';
 
 const slide = () => {
-  const itemList = document.querySelectorAll('.items');
-  const totalSlides = itemList.length;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
+  // const totalList = slideRef.current.childNodes.length;
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+    console.log(slideRef.current.childNodes);
   }, [currentSlide]);
 
   const nextSlide = () => {
-    if (currentSlide >= totalSlides - 1) {
+    if (currentSlide >= 4 - 1) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
   };
   const prevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(totalSlides - 1);
+    if (currentSlide <= 0) {
+      setCurrentSlide(4 - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -39,7 +38,7 @@ const slide = () => {
           <Toggle />
         </SlideBox>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat2} />
+          <Modal />
         </SlideBox>
         <SlideBox className="items">
           <img alt="고양이" src={Cat3} />

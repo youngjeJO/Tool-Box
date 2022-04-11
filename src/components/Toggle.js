@@ -13,7 +13,7 @@ function Toggle() {
   };
 
   return (
-    <Container className="Box">
+    <Container>
       <span>toggle</span>
       <ButtonBox onOff={onOff}>
         <ButtonStyle type="button" onClick={toggleEvent}>
@@ -45,11 +45,10 @@ const ButtonBox = styled.div`
   width: 80px;
   margin: 10px;
   border-radius: 40px;
-  border: 1px solid black;
   position: relative;
   overflow: hidden;
+  box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.336);
   ::before {
-    display: inline;
     position: absolute;
     content: '';
     height: 40px;
@@ -57,7 +56,6 @@ const ButtonBox = styled.div`
     background-color: #97c1e7;
   }
   ::after {
-    display: inline;
     position: absolute;
     content: '';
     border-radius: 100%;
@@ -66,7 +64,7 @@ const ButtonBox = styled.div`
     top: 2px;
     left: 5px;
     background-color: #ffffff;
-    transition: all 0.5s ease-out;
+    transition: all 0.5s;
     transform: translateX(
       ${({ onOff }) => {
         return onOff === 'on' ? '190%' : '0%';
@@ -77,10 +75,9 @@ const ButtonBox = styled.div`
 
 const ButtonStyle = styled.button`
   position: absolute;
-  border: none;
   height: 40px;
   width: 80px;
   top: 0;
   opacity: 0;
-  z-index: 2;
+  z-index: 99;
 `;
