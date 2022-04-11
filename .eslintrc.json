@@ -26,6 +26,7 @@
     "multiline-ternary": "off",
     "no-param-reassign": "off",
     "linebreak-style": 0,
+    "noInlineConfig": 0,
     "prettier/prettier": [
       "error",
       {

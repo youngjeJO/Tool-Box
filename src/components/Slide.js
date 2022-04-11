@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Toggle from './Toggle';
 import Modal from './Modal';
 import Tab from './Tab';
-import Cat4 from './img/고양이4.jpg';
+import Tag from './Tag';
 
 const slide = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -44,7 +44,7 @@ const slide = () => {
           <Tab />
         </SlideBox>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat4} />
+          <Tag />
         </SlideBox>
       </BoxContainer>
 
