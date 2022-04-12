@@ -4,6 +4,7 @@ import Toggle from './Toggle';
 import Modal from './Modal';
 import Tab from './Tab';
 import Tag from './Tag';
+import AutoComplete from './AutoComplete';
 
 const slide = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -17,7 +18,7 @@ const slide = () => {
   }, [currentSlide]);
 
   const nextSlide = () => {
-    if (currentSlide >= 4 - 1) {
+    if (currentSlide >= 5 - 1) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
@@ -25,7 +26,7 @@ const slide = () => {
   };
   const prevSlide = () => {
     if (currentSlide <= 0) {
-      setCurrentSlide(4 - 1);
+      setCurrentSlide(5 - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -45,6 +46,9 @@ const slide = () => {
         </SlideBox>
         <SlideBox className="items">
           <Tag />
+        </SlideBox>
+        <SlideBox className="items">
+          <AutoComplete />
         </SlideBox>
       </BoxContainer>
 
