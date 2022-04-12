@@ -1,31 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import Cat1 from './img/고양이1.jfif';
-import Cat2 from './img/고양이2.jfif';
-import Cat3 from './img/고양이3.jpg';
-import Cat4 from './img/고양이4.jpg';
+import Toggle from './Toggle';
+import Modal from './Modal';
+import Tab from './Tab';
+import Tag from './Tag';
+import AutoComplete from './AutoComplete';
 
 const slide = () => {
-  const itemList = document.querySelectorAll('.items');
-  const totalSlides = itemList.length;
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
+  // const totalList = slideRef.current.childNodes.length;
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+    console.log(slideRef.current.childNodes);
   }, [currentSlide]);
 
   const nextSlide = () => {
-    if (currentSlide >= totalSlides - 1) {
+    if (currentSlide >= 5 - 1) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
     }
   };
   const prevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(totalSlides - 1);
+    if (currentSlide <= 0) {
+      setCurrentSlide(5 - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -35,16 +36,19 @@ const slide = () => {
     <>
       <BoxContainer ref={slideRef}>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat1} />
+          <Toggle />
         </SlideBox>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat2} />
+          <Modal />
         </SlideBox>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat3} />
+          <Tab />
         </SlideBox>
         <SlideBox className="items">
-          <img alt="고양이" src={Cat4} />
+          <Tag />
+        </SlideBox>
+        <SlideBox className="items">
+          <AutoComplete />
         </SlideBox>
       </BoxContainer>
 
