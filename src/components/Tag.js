@@ -43,7 +43,6 @@ const tag = () => {
         {pushTag}
         <input
           onChange={onChange}
-          // onKeyUp={keyUpEvent}
           value={inputVal}
           placeholder="Press enter to add tags"
           type="text"
