@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Toggle from './Toggle';
 import Modal from './Modal';
@@ -7,34 +7,43 @@ import Tag from './Tag';
 import AutoComplete from './AutoComplete';
 
 const slide = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
   const slideRef = useRef(null);
-  // const totalList = slideRef.current.childNodes.length;
+  let timer;
 
-  useEffect(() => {
-    slideRef.current.style.transition = 'all 0.5s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
-    console.log(slideRef.current.childNodes);
-  }, [currentSlide]);
-
-  const nextSlide = () => {
-    if (currentSlide >= 5 - 1) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
+  const slideChange = (targetIndex) => {
+    const totalList = slideRef.current.childNodes;
+    slideRef.current.style.transition = '500ms';
+    setCurrentSlide(targetIndex);
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      slideRef.current.style.transition = '0s';
+      if (targetIndex < 1) {
+        targetIndex = totalList.length - 2;
+      } else if (targetIndex === totalList.length - 1) {
+        targetIndex = 1;
+      } else {
+        return;
+      }
+      setCurrentSlide(targetIndex);
+    }, [450]);
   };
-  const prevSlide = () => {
-    if (currentSlide <= 0) {
-      setCurrentSlide(5 - 1);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
+
+  const nextSlide = (e) => {
+    const targetIndex =
+      e.target.id === 'prev' ? currentSlide - 1 : currentSlide + 1;
+    slideChange(targetIndex);
   };
 
   return (
     <>
-      <BoxContainer ref={slideRef}>
+      <BoxContainer
+        ref={slideRef}
+        style={{ transform: `translateX(-${currentSlide}00%)` }}
+      >
+        <SlideBox className="items">
+          <AutoComplete />
+        </SlideBox>
         <SlideBox className="items">
           <Toggle />
         </SlideBox>
@@ -50,14 +59,18 @@ const slide = () => {
         <SlideBox className="items">
           <AutoComplete />
         </SlideBox>
+        <SlideBox className="items">
+          <Toggle />
+        </SlideBox>
       </BoxContainer>
-
-      <button type="button" onClick={prevSlide}>
-        prev
-      </button>
-      <button type="button" onClick={nextSlide}>
-        next
-      </button>
+      <BtnBox>
+        <button type="button" id="prev" onClick={nextSlide}>
+          &lt;
+        </button>
+        <button type="button" id="next" onClick={nextSlide}>
+          &gt;
+        </button>
+      </BtnBox>
     </>
   );
 };
@@ -69,9 +82,16 @@ const BoxContainer = styled.div`
   margin-bottom: 2em;
   display: flex;
 `;
-const SlideBox = styled.div`
-  img {
-    height: 500px;
-    width: 500px;
+const SlideBox = styled.div``;
+
+const BtnBox = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  button {
+    border: none;
+    color: #97c1e7;
+    background-color: unset;
+    font-size: 48px;
   }
 `;
