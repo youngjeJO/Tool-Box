@@ -77,12 +77,14 @@ const autoComplete = () => {
             type="text"
             placeholder="search anything"
           />
-          <DeleteBtn type="button" onClick={deleteBtn}>
-            x
-          </DeleteBtn>
+          {inputVal && (
+            <DeleteBtn type="button" onClick={deleteBtn}>
+              x
+            </DeleteBtn>
+          )}
         </SearchBox>
       </SearchContainer>
-      {inputVal && wordList.length > 1 ? (
+      {inputVal && pushWord.length >= 1 ? (
         <SearchList ref={autoList} className="word_list">
           {pushWord}
         </SearchList>
@@ -140,6 +142,7 @@ const WordList = styled.li`
 
 const DeleteBtn = styled.button`
   border: none;
+  background-color: unset;
 `;
 
 const SearchList = styled.ul`
