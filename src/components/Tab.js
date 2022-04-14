@@ -61,6 +61,7 @@ const Container = styled.div`
 `;
 
 const TabBox = styled.div`
+  margin: 10px;
   width: 90%;
 `;
 

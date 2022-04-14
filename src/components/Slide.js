@@ -5,6 +5,7 @@ import Modal from './Modal';
 import Tab from './Tab';
 import Tag from './Tag';
 import AutoComplete from './AutoComplete';
+import InfinityScroll from './InfinityScroll';
 
 const slide = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -42,7 +43,7 @@ const slide = () => {
         style={{ transform: `translateX(-${currentSlide}00%)` }}
       >
         <SlideBox className="items">
-          <AutoComplete />
+          <InfinityScroll />
         </SlideBox>
         <SlideBox className="items">
           <Toggle />
@@ -58,6 +59,9 @@ const slide = () => {
         </SlideBox>
         <SlideBox className="items">
           <AutoComplete />
+        </SlideBox>
+        <SlideBox className="items">
+          <InfinityScroll />
         </SlideBox>
         <SlideBox className="items">
           <Toggle />
@@ -88,6 +92,7 @@ const BtnBox = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  width: 100%;
   button {
     border: none;
     color: #97c1e7;

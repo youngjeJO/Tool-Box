@@ -42,7 +42,7 @@ const Container = styled.div`
 `;
 
 const ModalBtn = styled.div`
-  padding: 5px;
+  padding: 5px 5px 8px 5px;
   margin: 10px;
   width: 130px;
   height: 20px;
