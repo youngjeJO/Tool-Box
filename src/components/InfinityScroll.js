@@ -5,6 +5,7 @@ import EmojiData from './img/EmojiMock';
 const infinityScroll = () => {
   const [dataIndex, setDataIndex] = useState(1);
   const [getData, setGetData] = useState([]);
+  const [currentData, setCurrentData] = useState([]);
   const targetRef = useRef(null);
 
   useEffect(() => {
@@ -12,6 +13,7 @@ const infinityScroll = () => {
       return item.id > (dataIndex - 1) * 10 && item.id <= dataIndex * 10;
     });
     setGetData(getData.concat(addData));
+    setCurrentData(addData);
   }, [dataIndex]);
 
   const handleIntersect = (entries) => {
@@ -41,7 +43,11 @@ const infinityScroll = () => {
           return <StyledList>{item.emoji}</StyledList>;
         })}
       </DataBox>
-      <LastBox hide={dataIndex} getData={getData.length} ref={targetRef}>
+      <LastBox
+        currentData={currentData.length}
+        getData={getData.length}
+        ref={targetRef}
+      >
         {}
       </LastBox>
     </Container>
@@ -77,8 +83,8 @@ const StyledList = styled.li`
 `;
 
 const LastBox = styled.div`
-  display: ${({ hide, getData }) => {
-    return hide > 3 || getData === 0 ? 'none' : 'block';
+  display: ${({ currentData, getData }) => {
+    return currentData === 0 || getData === 0 ? 'none' : 'block';
   }};
   margin: 10px auto;
   max-height: 70%;
