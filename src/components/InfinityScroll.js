@@ -18,8 +18,10 @@ const infinityScroll = () => {
 
   const handleIntersect = (entries) => {
     const target = entries[0];
-    if (target.isIntersecting && target.intersectionRect.y > 100) {
+    if (target.isIntersecting) {
       setDataIndex((prev) => prev + 1);
+      console.log(target.intersectionRect);
+      console.log(target.isIntersecting);
     }
   };
 
