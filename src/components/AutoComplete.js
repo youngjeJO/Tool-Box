@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const words = ['avengers', 'captain america', 'hulk', 'iron man'];
 
 const autoComplete = () => {
-  const [focus, setFocus] = useState(false);
   const [inputVal, setInputVal] = useState('');
   const [wordList, setWordList] = useState(words);
   const autoList = useRef(null);
@@ -18,8 +17,6 @@ const autoComplete = () => {
     }
     words.push(inputVal);
     setInputVal('');
-    setFocus(false);
-    autoList.current.classList.remove('showList');
   };
 
   // useEffect를 이용해 inputVal이 변할 떄 마다
@@ -35,16 +32,6 @@ const autoComplete = () => {
   // input box에 text를 넣고 list를 보여주는 함수
   const onChange = (event) => {
     setInputVal(event.target.value);
-    if (focus === true) {
-      return;
-    }
-    if (autoList.current.classList.contains('showList')) {
-      autoList.current.classList.remove('showList');
-    } else {
-      autoList.current.classList.add('showList');
-
-      setFocus(true);
-    }
   };
 
   // li 클릭 시 input 값으로 넣어줌
@@ -62,7 +49,6 @@ const autoComplete = () => {
   // deletebtn 함수
   const deleteBtn = () => {
     setInputVal('');
-    autoList.current.classList.remove('showList');
   };
 
   return (
